@@ -94,7 +94,7 @@ body{
 #meal, #drink{
     margin: 2.4rem 0;
 }
-.meal-item, #drink-item{
+.meal-item, .drink-item{
     border-radius: 1rem;
     -webkit-border-radius: 1rem;
     -moz-border-radius: 1rem;
@@ -236,7 +236,7 @@ body{
 .recipe-instruct{
     padding: 1rem 0;
 }
-.recipe-meal-img img{
+.recipe-meal-img img, .recipe-drink-img img{
     width: 100px;
     height: 100px;
     border-radius: 50%;

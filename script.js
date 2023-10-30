@@ -4,6 +4,11 @@ const drinkList = document.getElementById('drink');
 const mealDetailsContent = document.querySelector('.meal-details-content');
 const drinkDetailsContent = document.querySelector('.drink-details-content');
 const recipeCloseBtn = document.getElementById('recipe-close-btn');
+const mealPage = document.getElementById('food-container');
+const drinkPage = document.getElementById('drink-container');
+
+mealPage.style.display = "block";
+drinkPage.style.display = "none";
 
 // event listeners
 searchBtn.addEventListener('click', getMealList);
@@ -18,7 +23,7 @@ function getDrinkList(){
     .then(response => response.json())
     .then(data => {
         let html = "";
-        
+
     })
 }
 

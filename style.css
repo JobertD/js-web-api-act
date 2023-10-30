@@ -32,7 +32,7 @@ body{
 }
 
 /*  */
-.container{
+.food-container{
     min-height: 100vh;
 }
 .meal-wrapper{
@@ -274,8 +274,39 @@ body{
     width: 100%;
 }
 
+nav{
+    margin:0;
+    height: 50px;
+    width:100%;
+    position:sticky;
+    background-color: lightblue;
+}
 
+nav ul{
+    display:flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    text-align: center;
+    border-radius: 25px;
+}
 
+nav li{
+    margin: 10px 0 40px 40px;
+}
+
+nav a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding:15px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover{
+    background-color: rgb(94, 188, 220);
+}
 
 
 

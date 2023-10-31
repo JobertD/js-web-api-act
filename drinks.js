@@ -11,35 +11,42 @@ recipeCloseBtn.addEventListener('click', () => {
 });
 
 //Get drink list that matches with the ingredient input
-function getDrinkList(){
+function getDrinkList() {
     let searchInputTxt = document.getElementById('drink-search-input').value.trim();
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchInputTxt}`)
-    .then(response => response.json())
-    .then(data => {
-        let html = "";
-        if(data.drinks){
-            data.drinks.forEach(drink => {
-                html += `
-                    <div class = "drink-item" data-id = "${drink.idDrink}">
-                        <div class = "drink-img">
-                            <img src = "${drink.strDrinkThumb}" alt = "drink">
+        .then(response => {
+                let html = "";
+                html = "Sorry, we didn't find any drink!";
+                drinkList.classList.add('notFound');
+                drinkList.innerHTML = html;
+            
+            return response.json();
+        })
+        .then(data => {
+            if (data.drinks) {
+                let html = "";
+                data.drinks.forEach(drink => {
+                    html += `
+                        <div class="drink-item" data-id="${drink.idDrink}">
+                            <div class="drink-img">
+                                <img src="${drink.strDrinkThumb}" alt="drink">
+                            </div>
+                            <div class="drink-name">
+                                <h3>${drink.strDrink}</h3>
+                                <a href="#" class="recipe-btn">Get Recipe</a>
+                            </div>
                         </div>
-                        <div class = "drink-name">
-                            <h3>${drink.strDrink}</h3>
-                            <a href = "#" class = "recipe-btn">Get Recipe</a>
-                        </div>
-                    </div>
-                `;
-            });
-            drinkList.classList.remove('notFound');
-        } else{
-            html = "Sorry, we didn't find any drink!";
-            drinkList.classList.add('notFound');
-        }
-
-        drinkList.innerHTML = html;
-    });
+                    `;
+                });
+                drinkList.classList.remove('notFound');
+                drinkList.innerHTML = html;
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
 }
+
 
 //Get recipe for the drink
 function getDrinkRecipe(e){

@@ -2,8 +2,6 @@ const searchBtn = document.getElementById('drink-search-btn');
 const drinkList = document.getElementById('drink');
 const drinkDetailsContent = document.querySelector('.drink-details-content');
 const recipeCloseBtn = document.getElementById('drink-recipe-close-btn');
-const drinkPage = document.getElementById('drink-container');
-
 
 // event listeners
 searchBtn.addEventListener('click', getDrinkList);

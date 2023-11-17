@@ -68,6 +68,9 @@ function drinkRecipeModal(drink){
         <h2 class = "recipe-title">${drink.strDrink}</h2>
         <p class = "recipe-category">${drink.strCategory}</p>
         <div class = "recipe-instruct">
+            <h3>Ingredients:</h3>
+                <ul id="drink-ingredients-list">
+                </ul>
             <h3>Instructions:</h3>
                 <ol id="drink-steps-list">
                 </ol>

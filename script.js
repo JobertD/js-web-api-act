@@ -58,10 +58,14 @@ function mealRecipeModal(meal){
     console.log(meal);
     meal = meal[0];
     let steps = meal.strInstructions.split(".");
+    let ingredients = getIngredients(meal);
     let html = `
         <h2 class = "recipe-title">${meal.strMeal}</h2>
         <p class = "recipe-category">${meal.strCategory}</p>
         <div class = "recipe-instruct">
+            <h3>Ingredients: </h3>
+                <ul id="food-ingredients-list">
+                </ul>
             <h3>Instructions:</h3>
                 <ol id="food-steps-list">
                 </ol>
@@ -75,6 +79,7 @@ function mealRecipeModal(meal){
     `;
     mealDetailsContent.innerHTML = html;
     let stepsList = mealDetailsContent.querySelector("ol");
+    let ingredientsList = mealDetailsContent.querySelector("ul");
     for (let step of steps) {
         if (step == "") continue;
         else {
@@ -83,5 +88,73 @@ function mealRecipeModal(meal){
             stepsList.appendChild(stepEl);
         }
     }
+
+    for (let ingredient of ingredients) {
+        if (ingredient == "") continue;
+        else {
+            let ingredientEl = document.createElement("li");
+            ingredientEl.textContent = ingredient;
+            ingredientsList.appendChild(ingredientEl);
+        }
+    }
     mealDetailsContent.parentElement.classList.add('showRecipe');
+}
+
+function getIngredients(meal) {
+    let ingredients = [];
+    let measures = [];
+    ingredients.push(meal.strIngredient1);
+    ingredients.push(meal.strIngredient2);
+    ingredients.push(meal.strIngredient3);
+    ingredients.push(meal.strIngredient4);
+    ingredients.push(meal.strIngredient5);
+    ingredients.push(meal.strIngredient6);
+    ingredients.push(meal.strIngredient7);
+    ingredients.push(meal.strIngredient8);
+    ingredients.push(meal.strIngredient9);
+    ingredients.push(meal.strIngredient10);
+    ingredients.push(meal.strIngredient11);
+    ingredients.push(meal.strIngredient12);
+    ingredients.push(meal.strIngredient13);
+    ingredients.push(meal.strIngredient14);
+    ingredients.push(meal.strIngredient15);
+    ingredients.push(meal.strIngredient16);
+    ingredients.push(meal.strIngredient17);
+    ingredients.push(meal.strIngredient18);
+    ingredients.push(meal.strIngredient19);
+    ingredients.push(meal.strIngredient20);
+
+    measures.push(meal.strMeasure1);
+    measures.push(meal.strMeasure2);
+    measures.push(meal.strMeasure3);
+    measures.push(meal.strMeasure4);
+    measures.push(meal.strMeasure5);
+    measures.push(meal.strMeasure6);
+    measures.push(meal.strMeasure7);
+    measures.push(meal.strMeasure8);
+    measures.push(meal.strMeasure9);
+    measures.push(meal.strMeasure10);
+    measures.push(meal.strMeasure11);
+    measures.push(meal.strMeasure12);
+    measures.push(meal.strMeasure13);
+    measures.push(meal.strMeasure14);
+    measures.push(meal.strMeasure15);
+    measures.push(meal.strMeasure16);
+    measures.push(meal.strMeasure17);
+    measures.push(meal.strMeasure18);
+    measures.push(meal.strMeasure19);
+    measures.push(meal.strMeasure20);
+
+    for (let i = 0; i < 20; i++) {
+        if (measures[i] == "" || measures[i] == null || ingredients[i] == "" || ingredients[i] == null) continue;
+        else {
+            ingredients[i] += ` - ${measures[i]}`;
+        }
+    }
+
+    return  ingredients.filter((ingredient) => {
+        console.log(ingredient);
+        return ingredient != "" || ingredient != null;
+    });
+
 }

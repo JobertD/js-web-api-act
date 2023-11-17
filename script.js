@@ -57,12 +57,14 @@ function getMealRecipe(e){
 function mealRecipeModal(meal){
     console.log(meal);
     meal = meal[0];
+    let steps = meal.strInstructions.split(".");
     let html = `
         <h2 class = "recipe-title">${meal.strMeal}</h2>
         <p class = "recipe-category">${meal.strCategory}</p>
         <div class = "recipe-instruct">
             <h3>Instructions:</h3>
-            <p>${meal.strInstructions}</p>
+                <ol id="food-steps-list">
+                </ol>
         </div>
         <div class = "recipe-meal-img">
             <img src = "${meal.strMealThumb}" alt = "">
@@ -72,5 +74,14 @@ function mealRecipeModal(meal){
         </div>
     `;
     mealDetailsContent.innerHTML = html;
+    let stepsList = mealDetailsContent.querySelector("ol");
+    for (let step of steps) {
+        if (step == "") continue;
+        else {
+            let stepEl = document.createElement("li");
+            stepEl.textContent = step;
+            stepsList.appendChild(stepEl);
+        }
+    }
     mealDetailsContent.parentElement.classList.add('showRecipe');
 }

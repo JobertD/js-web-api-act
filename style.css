@@ -160,7 +160,7 @@ body{
     height: 90%;
     overflow-y: scroll;
     display: none;
-    padding: 2rem 0;
+    padding: 2rem 30px;
 }
 .meal-details::-webkit-scrollbar, .drink-details::-webkit-scrollbar{
     width: 10px;
@@ -172,6 +172,11 @@ body{
     -moz-border-radius: 2rem;
     -ms-border-radius: 2rem;
     -o-border-radius: 2rem;
+}
+
+
+#food-steps-list li, #drink-steps-list li {
+    text-align: justify;
 }
 
 

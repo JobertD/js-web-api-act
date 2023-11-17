@@ -63,17 +63,28 @@ function getDrinkRecipe(e){
 function drinkRecipeModal(drink){
     console.log(drink);
     drink = drink[0];
+    let steps = drink.strInstructions.split(".");
     let html = `
         <h2 class = "recipe-title">${drink.strDrink}</h2>
         <p class = "recipe-category">${drink.strCategory}</p>
         <div class = "recipe-instruct">
             <h3>Instructions:</h3>
-            <p>${drink.strInstructions}</p>
+                <ol id="drink-steps-list">
+                </ol>
         </div>
         <div class = "recipe-drink-img">
             <img src = "${drink.strDrinkThumb}" alt = "">
         </div>
     `;
     drinkDetailsContent.innerHTML = html;
+    let stepsList = drinkDetailsContent.querySelector("ol");
+    for (let step of steps) {
+        if (step == "") continue;
+        else {
+            let stepEl = document.createElement("li");
+            stepEl.textContent = step;
+            stepsList.appendChild(stepEl);
+        }
+    }
     drinkDetailsContent.parentElement.classList.add('showRecipe');
 }

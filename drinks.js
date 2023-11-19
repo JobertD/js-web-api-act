@@ -64,6 +64,7 @@ function drinkRecipeModal(drink){
     console.log(drink);
     drink = drink[0];
     let steps = drink.strInstructions.split(".");
+    let ingredients = getIngredients(drink);
     let html = `
         <h2 class = "recipe-title">${drink.strDrink}</h2>
         <p class = "recipe-category">${drink.strCategory}</p>
@@ -81,6 +82,8 @@ function drinkRecipeModal(drink){
     `;
     drinkDetailsContent.innerHTML = html;
     let stepsList = drinkDetailsContent.querySelector("ol");
+    const ingredientsList = drinkDetailsContent.querySelector("#drink-ingredients-list");
+    ingredients.forEach(ingredient => ingredient && ingredientsList.appendChild(createListItem(ingredient)));
     for (let step of steps) {
         if (step == "") continue;
         else {
@@ -90,4 +93,21 @@ function drinkRecipeModal(drink){
         }
     }
     drinkDetailsContent.parentElement.classList.add('showRecipe');
+}
+
+function getIngredients(drink) {
+    const ingredients = Array.from({ length: 15 }, (_, i) => drink[`strIngredient${i + 1}`]);
+    const measures = Array.from({ length: 15 }, (_, i) => drink[`strMeasure${i + 1}`]);
+
+    return ingredients
+        .map((ingredient, i) => (ingredient && measures[i]) ? `${ingredient} - ${measures[i]}` : "")
+        .filter(Boolean);
+
+}
+
+// Helper function to create list item
+function createListItem(text) {
+    const listItem = document.createElement("li");
+    listItem.textContent = text;
+    return listItem;
 }

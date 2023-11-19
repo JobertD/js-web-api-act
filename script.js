@@ -64,6 +64,12 @@ function getMealRecipe(e) {
     }
 }
 
+// Helper function to get YouTube embed URL
+function getYouTubeEmbedUrl(youtubeUrl) {
+    const videoId = youtubeUrl.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+    return videoId ? `https://www.youtube.com/embed/${videoId[1]}` : youtubeUrl;
+}
+
 // Function to create a modal
 function mealRecipeModal(meal) {
     const steps = meal.strInstructions.split(".");
@@ -82,7 +88,7 @@ function mealRecipeModal(meal) {
             <img src="${meal.strMealThumb}" alt="">
         </div>
         <div class="recipe-link">
-            <a href="${meal.strYoutube}" target="_blank">Watch Video</a>
+            <iframe width="560" height="315" src="${getYouTubeEmbedUrl(meal.strYoutube)}" frameborder="0" allowfullscreen></iframe>
         </div>`;
 
     mealDetailsContent.innerHTML = html;
@@ -94,6 +100,7 @@ function mealRecipeModal(meal) {
 
     mealDetailsContent.parentElement.classList.add('showRecipe');
 }
+
 
 // Function to get ingredients
 function getIngredients(meal) {

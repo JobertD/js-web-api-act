@@ -16,8 +16,19 @@ fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
     .then(data => populateDropdown(data.categories))
     .catch(error => console.error('Error fetching categories:', error));
 
+// Fetch categories and populate the dropdown
+fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
+    .then(response => response.json())
+    .then(data => populateDropdown(data.categories))
+    .catch(error => console.error('Error fetching categories:', error));
+
 // Function to populate the dropdown with categories
 function populateDropdown(categories) {
+    const allCategoriesOption = document.createElement('option');
+    allCategoriesOption.value = 'All Categories';
+    allCategoriesOption.text = 'All Categories';
+    categoryDropdown.add(allCategoriesOption);
+
     categories.forEach(category => {
         const option = document.createElement('option');
         option.value = category.strCategory;
@@ -31,7 +42,12 @@ function getMealList() {
     const searchInputTxt = document.getElementById('search-input').value.trim();
     const selectedCategory = categoryDropdown.value;
 
-    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputTxt}&c=${selectedCategory}`)
+    // Modify the API request URL based on the selected category and ingredient
+    const apiUrl = selectedCategory === 'All Categories'
+        ? `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputTxt}`
+        : `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputTxt}&c=${selectedCategory}`;
+
+    fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             let html = data.meals

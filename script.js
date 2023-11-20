@@ -51,7 +51,15 @@ function getMealList() {
                     .then(lookupData => {
                         console.log("Lookup API response:", lookupData); 
                         console.log(lookupData.meals && lookupData.meals.length > 0 && lookupData.meals[0].strCategory, " - ", selectedCategory);
-                        if ((lookupData.meals && lookupData.meals.length > 0 && lookupData.meals[0].strCategory) == selectedCategory) {
+                        if (selectedCategory === "All Categories") {
+                            mealsArray.push({
+                                idMeal: fetchMeal.idMeal,
+                                strMeal: fetchMeal.strMeal,
+                                strMealThumb: fetchMeal.strMealThumb
+                            });
+                            console.log("Added to Array");
+                        }
+                        else if ((lookupData.meals && lookupData.meals.length > 0 && lookupData.meals[0].strCategory) == selectedCategory) {
                             mealsArray.push({
                                 idMeal: fetchMeal.idMeal,
                                 strMeal: fetchMeal.strMeal,
@@ -89,6 +97,9 @@ function getMealList() {
         })
         .catch (error => {
                 console.error(error)
+                let html = "Sorry, we didn't find any meal!";
+                mealList.innerHTML = html;
+                mealList.classList.toggle('notFound', !false);
         });
 }
 

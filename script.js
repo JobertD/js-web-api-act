@@ -15,11 +15,6 @@ fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
     .then(data => populateDropdown(data.categories))
     .catch(error => console.error('Error fetching categories:', error));
 
-// Fetch categories and populate the dropdown
-fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
-    .then(response => response.json())
-    .then(data => populateDropdown(data.categories))
-    .catch(error => console.error('Error fetching categories:', error));
 
 // Function to populate the dropdown with categories
 function populateDropdown(categories) {

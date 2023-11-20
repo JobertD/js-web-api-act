@@ -74,7 +74,7 @@ function drinkRecipeModal(drink){
                 </ul>
             <h3>Instructions:</h3>
                 <ol id="drink-steps-list">
-                </ol>
+                </ol> 
         </div>
         <div class = "recipe-drink-img">
             <img src = "${drink.strDrinkThumb}" alt = "">

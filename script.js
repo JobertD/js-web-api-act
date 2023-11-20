@@ -7,7 +7,6 @@ const categoryDropdown = document.getElementById('categoryDropdown');
 // Event listeners
 searchBtn.addEventListener('click', getMealList);
 mealList.addEventListener('click', getMealRecipe);
-categoryDropdown.addEventListener('change', getMealList);
 recipeCloseBtn.addEventListener('click', () => mealDetailsContent.parentElement.classList.remove('showRecipe'));
 
 // Fetch categories and populate the dropdown
@@ -43,30 +42,57 @@ function getMealList() {
     const selectedCategory = categoryDropdown.value;
 
     // Modify the API request URL based on the selected category and ingredient
-    const apiUrl = selectedCategory === 'All Categories'
-        ? `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputTxt}`
-        : `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputTxt}&c=${selectedCategory}`;
+    const apiUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputTxt}`;
 
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            let html = data.meals
-                ? data.meals.map(meal => `
-                    <a href="#" class="recipe-btn">
-                        <div class="meal-item" data-id="${meal.idMeal}">
-                            <div class="meal-img">
-                                <img src="${meal.strMealThumb}" alt="food">
-                            </div>
-                            <div class="meal-name">
-                                <h3>${meal.strMeal}</h3>
-                            </div>
-                        </div>
-                    </a>`
-                ).join('')
-                : "Sorry, we didn't find any meal!";
+            const mealsArray = [];
+            const promises = data.meals.map(fetchMeal => {
+                const lookup = fetchMeal.idMeal;
+                console.log(lookup);
+                return fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${lookup}`)
+                    .then(response => response.json())
+                    .then(lookupData => {
+                        console.log("Lookup API response:", lookupData); 
+                        if (lookupData.strCategory = selectedCategory) {
+                            mealsArray.push({
+                                idMeal: fetchMeal.idMeal,
+                                strMeal: fetchMeal.strMeal,
+                                strMealThumb: fetchMeal.strMealThumb
+                            });
+                            console.log("Added to Array");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error fetching lookup API:", error);
+                    });
+            });
+            console.log(mealsArray);
+
+            Promise.all(promises)
+            .then(() => {
+                  let html = mealsArray
+                        ? mealsArray.map(meal => `
+                            <a href="#" class="recipe-btn">
+                                <div class="meal-item" data-id="${meal.idMeal}">
+                                    <div class="meal-img">
+                                        <img src="${meal.strMealThumb}" alt="food">
+                                    </div>
+                                    <div class="meal-name">
+                                        <h3>${meal.strMeal}</h3>
+                                    </div>
+                                </div>
+                            </a>`
+                        ).join('')
+                        : "Sorry, we didn't find any meal!";
 
             mealList.innerHTML = html;
             mealList.classList.toggle('notFound', !data.meals);
+            })
+        })
+        .catch (error => {
+                console.error(error)
         });
 }
 

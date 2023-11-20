@@ -52,15 +52,16 @@ function getMealList() {
         .then(data => {
             let html = data.meals
                 ? data.meals.map(meal => `
-                    <div class="meal-item" data-id="${meal.idMeal}">
-                        <div class="meal-img">
-                            <img src="${meal.strMealThumb}" alt="food">
+                    <a href="#" class="recipe-btn">
+                        <div class="meal-item" data-id="${meal.idMeal}">
+                            <div class="meal-img">
+                                <img src="${meal.strMealThumb}" alt="food">
+                            </div>
+                            <div class="meal-name">
+                                <h3>${meal.strMeal}</h3>
+                            </div>
                         </div>
-                        <div class="meal-name">
-                            <h3>${meal.strMeal}</h3>
-                            <a href="#" class="recipe-btn">Get Recipe</a>
-                        </div>
-                    </div>`
+                    </a>`
                 ).join('')
                 : "Sorry, we didn't find any meal!";
 
@@ -72,13 +73,21 @@ function getMealList() {
 // Function to get recipe of the meal
 function getMealRecipe(e) {
     e.preventDefault();
-    if (e.target.classList.contains('recipe-btn')) {
-        const mealItem = e.target.parentElement.parentElement;
-        fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.dataset.id}`)
+    const recipeBtn = e.target.closest('.recipe-btn');
+
+    if (recipeBtn) {
+        const mealItem = recipeBtn.querySelector('.meal-item');
+        const mealId = mealItem.getAttribute('data-id');
+
+        fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
             .then(response => response.json())
-            .then(data => mealRecipeModal(data.meals[0]));
+            .then(data => mealRecipeModal(data.meals[0]))
+            .catch(error => {
+                console.error('Error fetching meal recipe:', error);
+            });
     }
 }
+
 
 // Helper function to get YouTube embed URL
 function getYouTubeEmbedUrl(youtubeUrl) {

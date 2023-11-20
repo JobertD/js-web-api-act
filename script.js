@@ -55,7 +55,8 @@ function getMealList() {
                     .then(response => response.json())
                     .then(lookupData => {
                         console.log("Lookup API response:", lookupData); 
-                        if (lookupData.strCategory = selectedCategory) {
+                        console.log(lookupData.meals && lookupData.meals.length > 0 && lookupData.meals[0].strCategory, " - ", selectedCategory);
+                        if ((lookupData.meals && lookupData.meals.length > 0 && lookupData.meals[0].strCategory) == selectedCategory) {
                             mealsArray.push({
                                 idMeal: fetchMeal.idMeal,
                                 strMeal: fetchMeal.strMeal,

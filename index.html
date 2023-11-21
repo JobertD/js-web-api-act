@@ -19,15 +19,20 @@
     <h2 class = "title">Find Meals For Your Ingredients</h2>
 
 
-  <div class = "meal-search-box">
-      <input type = "text" class = "search-control" placeholder="Enter an ingredient" id = "search-input">
-      <button type = "submit" class = "search-btn btn" id = "search-btn">
-        <i class = "fas fa-search"></i>
-      </button>
-      <label for="categoryDropdown">Select Category:</label>
-      <select id="categoryDropdown"></select>
-    </div>
+    <div class="meal-search-box">
+      <div class="search-input-wrapper">
+          <input type="text" class="search-control" placeholder="Enter an ingredient" id="search-input">
+          <button type="submit" class="search-btn btn" id="search-btn">
+              <i class="fas fa-search"></i>
+          </button>
+      </div>
+      <br>
+      <div class="category-dropdown-wrapper">
+          <label for="categoryDropdown">Select Category:</label>
+          <select id="categoryDropdown"></select>
+      </div>
   </div>
+  
 
   <div id = "food-container">
     <div class = "meal-wrapper">

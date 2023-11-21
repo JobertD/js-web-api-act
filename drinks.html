@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Find Meal For Your Ingredients</title>
+  <title>Find Cocktails For Your Ingredients</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-  <link rel = "stylesheet" href = "style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <nav>
@@ -15,42 +15,40 @@
     </ul>
   </nav>
   
-  <div id = "drink-container">
-    <div class = "drink-wrapper">
-      <div class = "drink-search">
-        <h2 class = "title">Find Cocktails For Your Ingredients</h2>
-    
+  <div id="drink-container">
+    <div class="drink-wrapper">
+      <div class="drink-search">
+        <h2 class="title">Find Cocktails For Your Ingredients</h2>
 
-        <div class = "drink-search-box">
-          <input type = "text" class = "search-control" placeholder="Enter an ingredient" id = "drink-search-input">
-          <button type = "submit" class = "search-btn btn" id = "drink-search-btn">
-            <i class = "fas fa-search"></i>
-          </button>
-          <label for="categoryDropdown">Select Category:</label>
-          <select id="categoryDropdown"></select>
+        <div class="drink-search-box">
+          <div class="search-input-wrapper">
+            <input type="text" class="search-control" placeholder="Enter an ingredient" id="drink-search-input">
+            <button type="submit" class="search-btn btn" id="drink-search-btn">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <br>
+          <div class="category-dropdown-wrapper">
+            <label for="categoryDropdown">Select Category:</label>
+            <select id="categoryDropdown"></select>
+          </div>
         </div>
       </div>
 
-      <div class = "drink-result">
-        <h2 class = "title">Your Search Results:</h2>
-        <div id= "drink">
-        </div>
+      <div class="drink-result">
+        <h2 class="title">Your Search Results:</h2>
+        <div id="drink"></div>
       </div>
 
-
-      <div class = "drink-details">
-        <button type = "button" class = "btn recipe-close-btn" id = "drink-recipe-close-btn">
-          <i class = "fas fa-times"></i>
+      <div class="drink-details">
+        <button type="button" class="btn recipe-close-btn" id="drink-recipe-close-btn">
+          <i class="fas fa-times"></i>
         </button>
-
-        <div class = "drink-details-content">
-          
-                </div>
-         </div>
+        <div class="drink-details-content"></div>
       </div>
-   </div>
+    </div>
+  </div>
 
-  <script src = "drinks.js"></script>
-
+  <script src="drinks.js"></script>
 </body>
 </html>

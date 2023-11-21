@@ -17,6 +17,8 @@ body{
 }
 
 /*  */
+
+
 .btn{
     font-family: inherit;
     cursor: pointer;
@@ -48,11 +50,19 @@ body{
 .meal-search cite, .drink-search cite{
     font-size: 1rem;
 }
-.meal-search-box, .drink-search-box{
+
+.meal-search-box, .drink-search-box {
     margin: 1.2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.search-input-wrapper {
     display: flex;
     align-items: stretch;
 }
+
 .search-control,
 .search-btn{
     width: 100%;
@@ -119,7 +129,7 @@ body{
 .recipe-btn{
     text-decoration: none;
     color: #fff;
-    background: var(--tenne-tawny);
+    background: #C9C9EE;
     font-weight: 500;
     font-size: 1.1rem;
     display: block;
@@ -326,6 +336,7 @@ nav a:hover{
 
 @media screen and (min-width: 768px){
     #meal, #drink{
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
     }

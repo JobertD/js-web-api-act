@@ -353,3 +353,26 @@ nav a:hover{
         grid-template-columns: repeat(3, 1fr);
     }
 }
+#categoryDropdown {
+    padding: 10px 15px;
+    border: 2px solid var(--tenne-tawny);
+    border-radius: 5px;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.05rem;
+    color: var(--tenne-tawny-dark);
+    cursor: pointer;
+    margin-bottom: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#categoryDropdown:hover {
+    border-color: var(--tenne-tawny-dark);
+}
+
+#categoryDropdown:focus {
+    outline: none;
+    border-color: var(--tenne-tawny);
+}

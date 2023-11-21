@@ -103,7 +103,6 @@ body{
     -ms-border-radius: 1rem;
     -o-border-radius: 1rem;
     overflow: hidden;
-    box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.79);
     margin: 2rem 0;
 }
 .meal-img img, .drink-img img{
@@ -125,6 +124,7 @@ body{
     display: block;
     margin: 1rem auto;
     border-radius: 2rem;
+    box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.79);
     -webkit-border-radius: 2rem;
     -moz-border-radius: 2rem;
     -ms-border-radius: 2rem;
@@ -326,6 +326,7 @@ nav a:hover{
 
 @media screen and (min-width: 768px){
     #meal, #drink{
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
     }

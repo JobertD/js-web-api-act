@@ -77,7 +77,7 @@ function getDrinkList() {
 
             Promise.all(promises)
             .then(() => {
-                  let html = drinksArray
+                  let html = drinksArray.length != 0
                         ? drinksArray.map(drink => `
                             <a href="#" class="recipe-btn">
                                 <div class="drink-item" data-id="${drink.idDrink}">

@@ -76,7 +76,7 @@ function getMealList() {
 
             Promise.all(promises)
             .then(() => {
-                  let html = mealsArray
+                  let html = mealsArray.length != 0
                         ? mealsArray.map(meal => `
                             <a href="#" class="recipe-btn">
                                 <div class="meal-item" data-id="${meal.idMeal}">
